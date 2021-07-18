@@ -59,3 +59,34 @@ durch reguläre Ausdrücke auf z.B. nur buchstaben gefiltert werden. Gleiches gi
 
 * Code auf React Hooks umbauen für z.B. einfacheres State handling(?)
 * Toast in ein Modul verpacken zur einfacheren Bedienung / Handhabung
+
+## FAQ
+
+Warum habe ich mich für einen zentralen Store entschieden?
+
+    Die intuitive Verwaltung eines zentralen Status (States) ist in einem Redux Store einfacher.
+     
+    Eine Möglichkeit wäre gewesen, die Properties stets zu ändern und durch zu reichen an die Komponente.
+    Dies hätte ggf. jedoch zu starken Abhängigkeiten geführt und zu keiner stärkeren Trennung von Daten und View.
+
+    Zudem kann durch einem zentralen Store jeder sich "drauf hängen" und weitere Ereignisse steuern,
+    oder "abhören". Daten Zentralisierung (Baustein A) und Komponenten (Baustein B) nutzen diese lediglich.
+
+Warum muss der Toast Container in die App eingebunden werden, und nicht automatisch bei Gebrauch einer "addMessage"?
+
+    Es wäre sicherlich bedienerfreundlich gewesen, wenn man nicht entscheiden müsste wo der Message Container eingebunden
+    wird. Dennoch gibt es Szenarien, wo man vielleicht unabhängige Meldungen ausgeben möchte. Dabei ist es hilfreich
+    zu entscheiden ob der Message Container noch gekapselt werden muss/sollte.
+
+Warum hast du die README.md nicht auf Englisch geschrieben?
+
+    Not enough time, due other meetings and contracts. Hopefully i'm still making you happy :-)
+    --- Looking forward, for some public changes, in future.
+
+Was würdest du noch optimieren?
+
+    Everything ;-)
+    
+    Zum einen würde ich die Architektur noch mehr Gedanken rein stecken, gezielt auf den Anwendungszweck.
+    Des Weiteren die Möglichkieten und die Bedienung gefallen mir noch nicht. Ebenso die Struktur könnte
+    noch ordentlicher werden. Das ganze sollte dann in einem Modul ausgelagert werden.
