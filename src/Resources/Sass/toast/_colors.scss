@@ -1,0 +1,8 @@
+.#{$prefix}-box {
+
+  @include toastColor("success", #02c195);
+  @include toastColor("info", #0591d1);
+  @include toastColor("warning", #fec54f);
+  @include toastColor("error", #f24865);
+
+}

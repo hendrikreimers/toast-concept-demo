@@ -1,0 +1,26 @@
+@mixin toastColor($name, $hexColor) {
+  --color-#{$name}: #{$hexColor};
+  --color-svg-#{$name}: #{$hexColor};
+  --color-#{$name}-rgb: #{red($hexColor)}, #{green($hexColor)}, #{blue($hexColor)};
+
+  &.#{$prefix}-#{$name} {
+    border-color: var(--color-#{$name});
+    background-color: rgba(var(--color-#{$name}-rgb), 0.25);
+
+    img.icon > svg {
+      fill: #02c195;
+    }
+  }
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

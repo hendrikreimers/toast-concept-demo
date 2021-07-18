@@ -1,0 +1,73 @@
+
+$prefix: toast-hr;
+
+.#{$prefix}-container {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.#{$prefix}-box {
+  --main-border-color: #000;
+  --main-border-radius: 3px;
+  --main-shadow-size: 3px;
+  --max-width: 800px;
+
+  border: 2px solid var(--main-border-color);
+  border-radius: var(--main-border-radius);
+  max-width: var(--max-width);
+  box-shadow: 0 0 var(--main-shadow-size) var(--main-shadow-size) rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+
+  padding: 10px 10px 7px 10px;
+  margin: 10px 15px;
+
+  transition: all .6s ease-in-out;
+  animation: toastSlideIn .7s;
+
+  .#{$prefix}-icon,
+  .#{$prefix}-controls,
+  .#{$prefix}-content {
+    flex: 0 0 auto;
+  }
+
+  .#{$prefix}-icon {
+    width: 25px;
+
+    img.icon {
+      width: 20px;
+      margin-top: 2px;
+    }
+  }
+
+  .#{$prefix}-content {
+    flex: 2 auto;
+
+    h1, h2, h3, h4, h5 {
+      font-size: 1.5em;
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      margin: 3px 0;
+    }
+  }
+
+  .#{$prefix}-controls {
+    width: 15px;
+
+    .#{$prefix}-btn {
+      background: transparent;
+      border: 0;
+
+      &.#{$prefix}-close {
+
+      }
+    }
+  }
+}
