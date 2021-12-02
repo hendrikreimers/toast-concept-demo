@@ -1,33 +1,44 @@
 # Toasting Demo
 
-## Konzept Ideen
+## About this
 
-* Optik wird über (S)CSS definiert. Dadurch ist es zentral steuerbar und wird durch den Entwickler nicht beeinflusst.
-* Kleiner Anpassungen können über CSS Custom Properties dennoch schnell und einfach überschrieben werden.
-* Das Layout ist flexibel erweiterbar, z.B. für Modals anstatt Toasts. Darum wurde auf "Fehlercodes" (Integer) verzichtet,
-  und stattdessen mit Key-Strings gearbeitet.
-* Durch den Typ String lässt sich auch schneller erkennen um welche Art von Meldung es sich handelt.
+This is just a quick concept, i've had done for a job interview and test. They wanted to qualify my React and coding skills.
+
+As you can see... i'm not up-to-date in react (like missing react-context, which would be more helpful, or react-hooks), 
+but i think react is simple to learn and i can rise my skills to the next level quickly :-)
+
+**Time available for the test:** 2 days
+
+**Effective time required:** 3 hours
+
+## Concept ideas
+
+* Optics is defined via (S)CSS. Thus it is centrally controllable and is not influenced by the developer.
+* Smaller adjustments can still be overwritten quickly and easily via CSS Custom Properties.
+* The layout is flexibly expandable, e.g. for modals instead of toasts. Therefore "error codes" (Integer) were omitted,
+  and instead worked with key strings.
+* The string type also makes it easier to identify the type of message.
 
 
-* Für globale Verfügbarkeit ist es ein eigenständiges Objekt, welches über JS ansprechbar ist.
-* Es sollte self-managed sein, damit der Entwickler (Dev) es möglichst einfach bedienen kann, ohne Rücksicht 
-  auf einzelne Elemente (Komponenten) nehmen muss.
-* Durch einen zentralen Container sollten auch die Items verwaltet werden. Dadurch gibt es eine zentralisierte Steuerung.
-* Jedes Toast/Modal wiederrum soll seine Daten selbst verwalten, für eine möglichst lose Kopplung.
+* For global availability, it is a standalone object which is responsive via JS.
+* It should be self-managed so that the developer (dev) can use it as easily as possible, without having to consider
+  on individual elements (components) must take.
+* Through a central container, the items should also be managed. Thereby there is a centralized control.
+* Each Toast/Modal should manage its own data, for a loose coupling.
 
 
-* Die Initialisierung eines Elements sollte so einfach wie möglich sein ( showSimpleMessage(...) ).
-* Optional sollte es möglich sein, auch komplexere Daten (Modals, etc.) anzeigen zu können (showExtendedMessage(...)).
-  In dieser Variante, ist es dann erlaubt alle Formen von Daten hinein zu geben (HTML, Buttons, Components, etc.).
+* The initialization of an element should be as simple as possible ( showSimpleMessage(...) ).
+* Optionally, it should be possible to display more complex data (modals, etc.) (showExtendedMessage(...)).
+  In this variant, it is then allowed to enter all forms of data (HTML, buttons, components, etc.).
 
 ## Server Messages
 
-* Nachrichten sollten auch vom Backend abgebildet werden können
-* Zur Sicherheit sollten diese keine komplexen Daten enthalten (reiner Text)
-* Über eine JS Funktion sollte dies einfach zu verarbeiten sein, 
-  damit es in einem Callback (bzw. Promise) gelöst werden kann.
+* Messages should also be able to be mapped by the backend.
+* For security these should not contain complex data (plain text)
+* Via a JS function this should be easy to process,
+  so that it can be solved in a callback (or Promise).
 
-### Beispiel
+### Example
 
     { "messages": [
         { "uid": 12345, error_code: "F01238", "type": "error", "title": "A good readable Headline", "message": "This is a detailed error message" },
@@ -36,57 +47,52 @@
       ] 
     }
 
-### Sicherheit
+### Security
 
-Auch wenn die Daten aus einem Vertrauenswürdigen Backend kommen, dürfen die Daten NIEMALS einfach so übergeben werden.
-Eine Überprüfung und bereinigung sollte erfolgen. Zum Beispiel der Typ darf nur eine feste Auswahl sein, oder minimal
-durch reguläre Ausdrücke auf z.B. nur buchstaben gefiltert werden. Gleiches gilt für die anderen Key/Value paare.
+Even if the data comes from a trusted backend, the data must NEVER be transferred just like that.
+A check and cleanup should be done. For example the type must be only a fixed selection, or minimal
+filtered by regular expressions to e.g. only letters. The same applies to the other key/value pairs.
 
-## Erweiterungsmöglichkeiten (Todo)
+## Enhancement possibilities (Todo)
 
-* Responsive Layout verbessern (CSS etc.)
-* Optik feinschliff (Icons, Cross, etc.) 
-* Demo erweitern / komplexer (Routing Beispiel, Steuerung außerhalb des Elements durch z.B. Buttons, ...)
-  
-
-* Listener bzw. Observer einbauen, so dass auf Nachrichten Typen reagiert werden kann und Interaktionen durchgeführt 
-  werden können. Dadurch lassen sich bestimmte Elemente sperren im Design bis eine Aktion durchgeführt wurde.
+* Improve Responsive Layout (CSS etc.)
+* Optics fine tuning (Icons, Cross, etc.)
+* Demo extend / more complex (routing example, control outside the element by e.g. buttons, ...)
 
 
-* Positionierung: Eine fixe oder variable konfigurierbare Positionierung könnte für Layouts praktikabel sein,
-  unabhängig vom CSS
-  
+* Add listener or observer, so that message types can be reacted to and interactions can be performed.
+  can be performed. This allows certain elements to be locked in the design until an action has been performed.
 
-* Code auf React Hooks umbauen für z.B. einfacheres State handling(?)
-* Toast in ein Modul verpacken zur einfacheren Bedienung / Handhabung
+
+* Positioning: A fixed or variable configurable positioning could be practicable for layouts,
+  independent of the CSS
+
+
+* Convert code to React hooks and context for e.g. easier state handling
+* Wrap toast in a module for easier operation / handling.
 
 ## FAQ
 
-Warum habe ich mich für einen zentralen Store entschieden?
+Why did I choose a central store?
 
-    Die intuitive Verwaltung eines zentralen Status (States) ist in einem Redux Store einfacher.
+    The intuitive management of a central state (States) is easier in a Redux Store.
      
-    Eine Möglichkeit wäre gewesen, die Properties stets zu ändern und durch zu reichen an die Komponente.
-    Dies hätte ggf. jedoch zu starken Abhängigkeiten geführt und zu keiner stärkeren Trennung von Daten und View.
+    One possibility would have been to always change the properties and pass them through to the component.
+    However, this could have led to strong dependencies and no stronger separation of data and view.
 
-    Zudem kann durch einem zentralen Store jeder sich "drauf hängen" und weitere Ereignisse steuern,
-    oder "abhören". Daten Zentralisierung (Baustein A) und Komponenten (Baustein B) nutzen diese lediglich.
+    In addition, a central store allows anyone to "hang on" and control other events,
+    or "eavesdrop". Data centralization (module A) and components (module B) only use this.
 
-Warum muss der Toast Container in die App eingebunden werden, und nicht automatisch bei Gebrauch einer "addMessage"?
+Why does the Toast container have to be included in the app, and not automatically when using an "addMessage"?
 
-    Es wäre sicherlich bedienerfreundlich gewesen, wenn man nicht entscheiden müsste wo der Message Container eingebunden
-    wird. Dennoch gibt es Szenarien, wo man vielleicht unabhängige Meldungen ausgeben möchte. Dabei ist es hilfreich
-    zu entscheiden ob der Message Container noch gekapselt werden muss/sollte.
+    It would have been certainly user-friendly, if one did not have to decide where the message container is included. 
+    Nevertheless, there are scenarios where one might want to output independent messages. Here it is helpful
+    to decide whether the message container must/should still be encapsulated.
 
-Warum hast du die README.md nicht auf Englisch geschrieben?
-
-    Not enough time, due other meetings and contracts. Hopefully i'm still making you happy :-)
-    --- Looking forward, for some public changes, in future.
-
-Was würdest du noch optimieren?
+What else would you optimize?
 
     Everything ;-)
     
-    Zum einen würde ich die Architektur noch mehr Gedanken rein stecken, gezielt auf den Anwendungszweck.
-    Des Weiteren die Möglichkieten und die Bedienung gefallen mir noch nicht. Ebenso die Struktur könnte
-    noch ordentlicher werden. Das ganze sollte dann in einem Modul ausgelagert werden.
+    On the one hand, I would put more thought into the architecture, specifically for the application purpose.
+    Furthermore, the possibilities and the operation do not please me yet. Likewise the structure could
+    become still more tidy. The whole thing should then be outsourced in a module.
