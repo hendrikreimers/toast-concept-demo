@@ -11,6 +11,8 @@ but i think react is simple to learn and i can rise my skills to the next level 
 
 **Effective time required:** 3 hours
 
+![Screenshot](screenshot.png)
+
 ## Concept ideas
 
 * Optics is defined via (S)CSS. Thus it is centrally controllable and is not influenced by the developer.
